@@ -38,6 +38,8 @@ public class FlappyBird extends ApplicationAdapter {
     float[] tubeOffset = new float[numberOfTubes];
     float distanceBetweenTubes;
 
+    int points = 0;
+
     @Override
     public void create() {
         batch = new SpriteBatch();
@@ -83,7 +85,6 @@ public class FlappyBird extends ApplicationAdapter {
 
             if (Gdx.input.justTouched()) {
                 velocity = -20;
-
             }
 
             for (int i = 0; i < numberOfTubes; i++) {
@@ -102,9 +103,12 @@ public class FlappyBird extends ApplicationAdapter {
                 batch.draw(bottomTubes[0], tubeX[i], Gdx.graphics.getHeight() / 2 - gap / 2 - bottomTubes[0].getHeight() + tubeOffset[i]);
 
                 topTubeRectangles[i] = new Rectangle(tubeX[i], Gdx.graphics.getHeight() / 2 + gap / 2 + tubeOffset[i], topTubes[0].getWidth(), topTubes[0].getHeight());
-                bottomTubeRectangles[i] = new Rectangle(tubeX[i], Gdx.graphics.getHeight() / 2 - gap / 2 - bottomTubes[0].getHeight() + tubeOffset[i] , bottomTubes[0].getWidth(), bottomTubes[0].getHeight());
+                bottomTubeRectangles[i] = new Rectangle(tubeX[i], Gdx.graphics.getHeight() / 2 - gap / 2 - bottomTubes[0].getHeight() + tubeOffset[i], bottomTubes[0].getWidth(), bottomTubes[0].getHeight());
 
-
+                if (tubeX[i] == topTubes[0].getWidth()) {
+                    points++;
+                    Gdx.app.log("Point", points + "");
+                }
             }
 
             if (birdY > 0 || velocity < 0) {
@@ -137,14 +141,16 @@ public class FlappyBird extends ApplicationAdapter {
 
         //shapeRenderer.circle(birdCircle.x, birdCircle.y, birdCircle.radius);
 
-        for(int i = 0; i < numberOfTubes; i++){
+        for (int i = 0; i < numberOfTubes; i++) {
 
             //shapeRenderer.rect(tubeX[i], Gdx.graphics.getHeight() / 2 + gap / 2 + tubeOffset[i], topTubes[0].getWidth(), topTubes[0].getHeight());
             //shapeRenderer.rect(tubeX[i], Gdx.graphics.getHeight() / 2 - gap / 2 - bottomTubes[0].getHeight()+ tubeOffset[i], bottomTubes[0].getWidth(), bottomTubes[0].getHeight());
 
-            if(Intersector.overlaps(birdCircle, topTubeRectangles[i]) || Intersector.overlaps(birdCircle, bottomTubeRectangles[i])){
+            if (Intersector.overlaps(birdCircle, topTubeRectangles[i]) || Intersector.overlaps(birdCircle, bottomTubeRectangles[i])) {
                 Gdx.app.log("Collision", "Yes");
             }
+
+
         }
         //shapeRenderer.end();
     }

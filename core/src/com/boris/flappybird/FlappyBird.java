@@ -15,7 +15,7 @@ import java.util.Random;
 public class FlappyBird extends ApplicationAdapter {
     SpriteBatch batch;
     Texture background;
-    ShapeRenderer shapeRenderer;
+    //ShapeRenderer shapeRenderer;
 
     Texture[] birds, topTubes, bottomTubes;
     int flapState = 0;
@@ -42,7 +42,7 @@ public class FlappyBird extends ApplicationAdapter {
     public void create() {
         batch = new SpriteBatch();
         background = new Texture("bg.png");
-        shapeRenderer = new ShapeRenderer();
+        //shapeRenderer = new ShapeRenderer();
         birdCircle = new Circle();
 
         birds = new Texture[2];
@@ -63,7 +63,7 @@ public class FlappyBird extends ApplicationAdapter {
 
         for (int i = 0; i < numberOfTubes; i++) {
             tubeOffset[i] = (randomGenerator.nextFloat() - 0.5f) * (Gdx.graphics.getHeight() - gap - 200);
-            tubeX[i] = Gdx.graphics.getWidth() / 2 - topTubes[0].getWidth() / 2 + i * distanceBetweenTubes;
+            tubeX[i] = Gdx.graphics.getWidth() / 2 - topTubes[0].getWidth() / 2 + Gdx.graphics.getWidth() + i * distanceBetweenTubes;
 
             topTubeRectangles[i] = new Rectangle();
             bottomTubeRectangles[i] = new Rectangle();
@@ -132,21 +132,21 @@ public class FlappyBird extends ApplicationAdapter {
         birdCircle.set(Gdx.graphics.getWidth() / 2, birdY + birds[flapState].getHeight() / 2, birds[flapState].getWidth() / 2);
 
 
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(Color.RED);
+        //shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        //shapeRenderer.setColor(Color.RED);
 
-        shapeRenderer.circle(birdCircle.x, birdCircle.y, birdCircle.radius);
+        //shapeRenderer.circle(birdCircle.x, birdCircle.y, birdCircle.radius);
 
         for(int i = 0; i < numberOfTubes; i++){
 
-            shapeRenderer.rect(tubeX[i], Gdx.graphics.getHeight() / 2 + gap / 2 + tubeOffset[i], topTubes[0].getWidth(), topTubes[0].getHeight());
-            shapeRenderer.rect(tubeX[i], Gdx.graphics.getHeight() / 2 - gap / 2 - bottomTubes[0].getHeight()+ tubeOffset[i], bottomTubes[0].getWidth(), bottomTubes[0].getHeight());
+            //shapeRenderer.rect(tubeX[i], Gdx.graphics.getHeight() / 2 + gap / 2 + tubeOffset[i], topTubes[0].getWidth(), topTubes[0].getHeight());
+            //shapeRenderer.rect(tubeX[i], Gdx.graphics.getHeight() / 2 - gap / 2 - bottomTubes[0].getHeight()+ tubeOffset[i], bottomTubes[0].getWidth(), bottomTubes[0].getHeight());
 
             if(Intersector.overlaps(birdCircle, topTubeRectangles[i]) || Intersector.overlaps(birdCircle, bottomTubeRectangles[i])){
                 Gdx.app.log("Collision", "Yes");
             }
         }
-        shapeRenderer.end();
+        //shapeRenderer.end();
     }
 
     @Override

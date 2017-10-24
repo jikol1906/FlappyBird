@@ -101,7 +101,7 @@ public class FlappyBird extends ApplicationAdapter {
                 batch.draw(bottomTubes[0], tubeX[i], Gdx.graphics.getHeight() / 2 - gap / 2 - bottomTubes[0].getHeight() + tubeOffset[i]);
 
                 topTubeRectangles[i] = new Rectangle(tubeX[i], Gdx.graphics.getHeight() / 2 + gap / 2 + tubeOffset[i], topTubes[0].getWidth(), topTubes[0].getHeight());
-                bottomTubeRectangles[i] = new Rectangle(tubeX[i], Gdx.graphics.getHeight() / 2 - gap / 2 - bottomTubes[0].getHeight() + git , bottomTubes[0].getWidth(), bottomTubes[0].getHeight());
+                bottomTubeRectangles[i] = new Rectangle(tubeX[i], Gdx.graphics.getHeight() / 2 - gap / 2 - bottomTubes[0].getHeight() + tubeOffset[i] , bottomTubes[0].getWidth(), bottomTubes[0].getHeight());
 
 
             }

@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
@@ -39,6 +40,7 @@ public class FlappyBird extends ApplicationAdapter {
     float distanceBetweenTubes;
 
     int points = 0;
+    BitmapFont font;
 
     @Override
     public void create() {
@@ -46,6 +48,9 @@ public class FlappyBird extends ApplicationAdapter {
         background = new Texture("bg.png");
         //shapeRenderer = new ShapeRenderer();
         birdCircle = new Circle();
+        font = new BitmapFont();
+        font.setColor(Color.WHITE);
+        font.getData().setScale(10);
 
         birds = new Texture[2];
         birds[0] = new Texture("bird.png");
@@ -105,7 +110,7 @@ public class FlappyBird extends ApplicationAdapter {
                 topTubeRectangles[i] = new Rectangle(tubeX[i], Gdx.graphics.getHeight() / 2 + gap / 2 + tubeOffset[i], topTubes[0].getWidth(), topTubes[0].getHeight());
                 bottomTubeRectangles[i] = new Rectangle(tubeX[i], Gdx.graphics.getHeight() / 2 - gap / 2 - bottomTubes[0].getHeight() + tubeOffset[i], bottomTubes[0].getWidth(), bottomTubes[0].getHeight());
 
-                if (tubeX[i] == topTubes[0].getWidth() / 2) {
+                if (tubeX[i] == Gdx.graphics.getWidth() / 2) {
                     points++;
                     Gdx.app.log("Point", points + "");
                 }
@@ -131,14 +136,17 @@ public class FlappyBird extends ApplicationAdapter {
 
 
         batch.draw(birds[flapState], Gdx.graphics.getWidth() / 2 - birds[flapState].getWidth() / 2, birdY);
+
+        font.draw(batch, String.valueOf(points), 100, 200);
+
         batch.end();
 
         birdCircle.set(Gdx.graphics.getWidth() / 2, birdY + birds[flapState].getHeight() / 2, birds[flapState].getWidth() / 2);
 
 
+
         //shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         //shapeRenderer.setColor(Color.RED);
-
         //shapeRenderer.circle(birdCircle.x, birdCircle.y, birdCircle.radius);
 
         for (int i = 0; i < numberOfTubes; i++) {

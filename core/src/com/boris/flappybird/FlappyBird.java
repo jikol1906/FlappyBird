@@ -105,7 +105,7 @@ public class FlappyBird extends ApplicationAdapter {
                 topTubeRectangles[i] = new Rectangle(tubeX[i], Gdx.graphics.getHeight() / 2 + gap / 2 + tubeOffset[i], topTubes[0].getWidth(), topTubes[0].getHeight());
                 bottomTubeRectangles[i] = new Rectangle(tubeX[i], Gdx.graphics.getHeight() / 2 - gap / 2 - bottomTubes[0].getHeight() + tubeOffset[i], bottomTubes[0].getWidth(), bottomTubes[0].getHeight());
 
-                if (tubeX[i] == topTubes[0].getWidth()) {
+                if (tubeX[i] == topTubes[0].getWidth() / 2) {
                     points++;
                     Gdx.app.log("Point", points + "");
                 }
